@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Регистрационная Форма</title>
+</head>
+<body>
+    <form method="post" enctype="multipart/form-data" action="/register.php?this_is_get_param=yes">
+        <label for="name">Ваше имя:</label>
+        <input required="required" id="name" name="name" type="text" placeholder="Введите ваше имя" />
+        <br>
+        <label for="email">Ваш email:</label>
+        <input id="email" name="email" type="email" placeholder="Введите ваш email" />
+        <br>
+        <label for="name">Ваш пароль:</label>
+        <input id="password" name="password" type="password" placeholder="Введите ваш пароль" />
+        <br>
+        Ваш пол: <select name="sex">
+            <option value="1">М</option>
+            <option value="0">Ж</option>
+        </select>
+        <br>
+        <input id="agree" type="checkbox" name="agree" checked="checked" />
+        <label for="agree">Согласны или нет?</label>
+        <br>
+
+        <br><br>
+        <input id="get_emails" type="checkbox" name="get_emails" checked="checked" />
+        <label for="get_emails">Согласны получать имейлы?</label>
+        <br><br>
+        <input id="get_sms" type="checkbox" name="get_sms" checked="checked" />
+        <label for="get_sms">Согласны получать SMS?</label>
+        <br><br>
+
+        Где вы были?<br>
+        <select name="country[]" multiple="multiple">
+            <option value="ukraine">Украина</option>
+            <option value="usa">США</option>
+            <option value="china">Китай</option>
+        </select>
+
+
+        <input name="students[]" value="21" type="checkbox"> Иван <br>
+        <input name="students[]" value="24" type="checkbox"> Иннокентий <br>
+
+        <br><br>
+        Выберите фото: <input multiple="multiple" type="file" name="photo[]" />
+
+        <br><br>
+        <input type="submit" value="Отправить форму" />
+    </form>
+</body>
+</html>
