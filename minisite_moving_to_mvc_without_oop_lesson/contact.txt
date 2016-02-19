@@ -1,0 +1,8 @@
+<?php echo 'test'; ?>
+
+Расширение .txt не влияет на обработку PHP тегов
+
+<form>
+	<input type="text" name="email" /><br>
+	<textarea name="comment" name="comment"></textarea>
+</form>
