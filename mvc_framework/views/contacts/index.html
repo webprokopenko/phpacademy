@@ -1,5 +1,5 @@
 <h3>Contact us:</h3>
-<form action="" method="post">
+<form id="contact_form" action="" method="post">
     <input type="text" class="form-control" name="name" placeholder="Your Name" /><br/>
     <input type="text" class="form-control" name="email" placeholder="Your Email" /><br/>
     <textarea name="message" class="form-control" placeholder="Your Message"></textarea><br/>
@@ -7,6 +7,22 @@
 </form>
 
 <script type="text/javascript" src="/js/admin.js"></script>
+
+<script>
+    // Attach a submit handler to the form
+    $("#contact_form").submit(function(event) {
+        // Stop form from submitting normally
+        event.preventDefault();
+
+        $.post("/contacts/", $("#contact_form").serialize())
+                .done(function(data) {
+                    $('#contact_form').replaceWith(data);
+                });
+
+        // alert($('[name="email"]').val());
+        //alert('Пытаемся отправить форму');
+    });
+</script>
 
 
 <!--<input type="text" value="" id="current_time" />-->

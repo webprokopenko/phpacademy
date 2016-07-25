@@ -11,7 +11,11 @@ class ContactsController extends Controller{
         if ( $_POST ){
             if ( $this->model->save($_POST) ){
                 Session::setFlash('Thank you! Your message was sent successfully!');
+                echo "Спасибо, форма отправлена!";
+            } else {
+                echo "Ошибка!!!";
             }
+            exit;
         }
     }
 
