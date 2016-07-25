@@ -5,8 +5,8 @@
         <input type="text" id="alias" name="alias" value="" class="form-control" />
     </div>
     <div class="form-group">
-        <label for="title">Alias</label>
-        <input type="text" id="title" name="title" value="" class="form-control" />
+        <label for="title">Title</label>
+        <input  onkeyup="$('#alias').val(urlRusLat($(this).val()));"  type="text" id="title" name="title" value="" class="form-control" />
     </div>
     <div class="form-group">
         <label for="content">Content</label>
