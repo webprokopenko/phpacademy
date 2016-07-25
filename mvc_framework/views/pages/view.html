@@ -1,3 +1,23 @@
 <h1><?=$data['page']['title']?></h1>
 
 <?=$data['page']['content']?>
+
+<?php if($data['comments']){ ?>
+
+    <h3>Комментарии (<?=count($data['comments'])?>)</h3><br>
+
+    <?php foreach($data['comments'] as $comment){ ?>
+    <div style="padding:10px; margin-top: 20px; border: 1px solid #dedede;">
+        <b><?=$comment['email']?></b><br>
+        <?=$comment['msg']?><br><br>
+    </div>
+    <?php } ?>
+
+<?php } ?>
+
+<form method="post" action="/pages/addComment/<?=$data['page']['alias']?>">
+    <h3>Добавить комментарий</h3><br>
+    <input type="text" name="email" class="form-control" placeholder="Ваш имейл" /><br>
+    <textarea name="msg" placeholder="Комментарий" class="form-control"></textarea><br>
+    <input type="submit" value="Добавить" />
+</form>

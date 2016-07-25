@@ -7,6 +7,8 @@ class DB{
     public function __construct($host, $user, $password, $db_name){
         $this->connection = new mysqli($host, $user, $password, $db_name);
 
+        $this->query('SET NAMES UTF8');
+
         if( mysqli_connect_error() ){
             throw new Exception('Could not connect to DB');
         }

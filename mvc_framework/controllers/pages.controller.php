@@ -11,6 +11,21 @@ class PagesController extends Controller{
         $this->data['pages'] = $this->model->getList();
     }
 
+    public function addComment(){
+        if ( isset($this->params[0]) ){
+            $alias = strtolower($this->params[0]);
+            $page = $this->model->getByAlias($alias);
+        } else {
+            Router::redirect('/');
+        }
+
+        $page_id = $page['id'];
+        $comments_model = new Comment();
+        $comment_id = $comments_model->add($page_id, $_POST);
+
+        Router::redirect('/pagess/view/'.$alias);
+    }
+
     public function view(){
         $params = App::getRouter()->getParams();
 
@@ -18,6 +33,9 @@ class PagesController extends Controller{
             $alias = strtolower($params[0]);
             $this->data['page'] = $this->model->getByAlias($alias);
         }
+
+        $comments_model = new Comment();
+        $this->data['comments'] = $comments_model->getByPageId($this->data['page']['id']);
     }
 
     public function admin_index(){
