@@ -38,4 +38,9 @@ class DB{
         return mysqli_escape_string($this->connection, $str);
     }
 
+    // Получить последний вставленный AUTO INCREMENT
+    public function insertId(){
+        return mysqli_insert_id($this->connection);
+    }
+
 }
