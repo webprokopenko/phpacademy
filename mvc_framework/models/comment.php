@@ -33,6 +33,17 @@ class Comment extends Model {
 
     }
 
+    public function getById($comment_id){
+        $comment_id = (int)$comment_id;
+        $sql = "select * from comments where id = {$comment_id} limit 1";
+
+        if($result = $this->db->query($sql)){
+            return $result[0];
+        }
+
+        return null;
+    }
+
     // Получаем комментарии по странице
     public function getByPageId($page_id){
         $page_id = (int)$page_id;

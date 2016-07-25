@@ -7,11 +7,7 @@
     <h3>Комментарии (<?=count($data['comments'])?>)</h3><br>
 
     <?php foreach($data['comments'] as $comment){ ?>
-    <div style="padding:10px; margin-top: 20px; border: 1px solid #dedede;">
-        <b><?=$comment['email']?></b><br>
-        <?=$comment['msg']?><br><br>
-        <a href="javascript:void(0);" onclick="$(this).replaceWith($('#comment_form').clone().append('<input value=<?=$comment['id']?> name=reply_to type=hidden />'));">Ответить</a>
-    </div>
+        <?php include VIEWS_PATH.DS.'helpers'.DS.'comment.html'; ?>
     <?php } ?>
 
 <?php } ?>
@@ -20,24 +16,29 @@
     <h3>Добавить комментарий</h3><br>
     <input type="text" name="email" class="form-control" placeholder="Ваш имейл" /><br>
     <textarea name="msg" placeholder="Комментарий" class="form-control"></textarea><br>
-    <input type="submit" value="Добавить" />
+    <input type="submit" onclick="sendComment($(this).parent(), event);" value="Добавить" />
 </form>
 
 <script>
-    $(".comment_form").submit(function(event) {
+    function sendComment(form, event){
         event.preventDefault();
 
         // Переменная, куда отправляется форма
-        var post_url = $(this).attr('action');
+        var post_url = $(form).attr('action');
 
-        my_form = this;
+        my_form = form;
 
-        $.post(post_url, $(this).serialize())
-            .done(function(data) {
-                console.log(my_form);
+        console.log(form);
 
-                $(my_form).replaceWith(data);
-            });
+        $.post(post_url, $(form).serialize())
+                .done(function(data) {
+                    console.log(my_form);
 
-    });
+                    $(my_form).replaceWith(data);
+                });
+    }
+
+   $(".comment_form").submit(function(event) {
+       sendComment(this, event);
+   });
 </script>

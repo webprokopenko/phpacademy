@@ -24,7 +24,12 @@ class PagesController extends Controller{
         $comment_id = $comments_model->add($page_id, $_POST);
 
         if($comment_id){
-            echo "Спасибо, комментарий добавлен";
+            // Выводим обратно блок с комментарием
+            ob_start();
+            $comment = $comments_model->getById($comment_id);
+            include VIEWS_PATH.DS.'helpers'.DS.'comment.html';
+            $result = ob_get_clean();
+            echo $result;
         } else {
             echo "Ошибка!!!";
         }
