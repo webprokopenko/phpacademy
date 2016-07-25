@@ -6,6 +6,11 @@ function confirmDelete(){
     }
 }
 
+function getTimeByAJAX(){
+    // TODO: потом объект передавать как параметр
+    $.get("/test.php", function(data){ $("#current_time").val(data); });
+}
+
 // Взято с
 // http://javascript.ru/forum/misc/27347-nadezhnyjj-dvukhstoronnijj-translit.html#post168184
 function urlRusLat(str) {
