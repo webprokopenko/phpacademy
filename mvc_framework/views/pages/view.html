@@ -10,14 +10,34 @@
     <div style="padding:10px; margin-top: 20px; border: 1px solid #dedede;">
         <b><?=$comment['email']?></b><br>
         <?=$comment['msg']?><br><br>
+        <a href="javascript:void(0);" onclick="$(this).replaceWith($('#comment_form').clone().append('<input value=<?=$comment['id']?> name=reply_to type=hidden />'));">Ответить</a>
     </div>
     <?php } ?>
 
 <?php } ?>
 
-<form method="post" action="/pages/addComment/<?=$data['page']['alias']?>">
+<form class="comment_form" method="post" id="comment_form" action="/pages/addComment/<?=$data['page']['alias']?>">
     <h3>Добавить комментарий</h3><br>
     <input type="text" name="email" class="form-control" placeholder="Ваш имейл" /><br>
     <textarea name="msg" placeholder="Комментарий" class="form-control"></textarea><br>
     <input type="submit" value="Добавить" />
 </form>
+
+<script>
+    $(".comment_form").submit(function(event) {
+        event.preventDefault();
+
+        // Переменная, куда отправляется форма
+        var post_url = $(this).attr('action');
+
+        my_form = this;
+
+        $.post(post_url, $(this).serialize())
+            .done(function(data) {
+                console.log(my_form);
+
+                $(my_form).replaceWith(data);
+            });
+
+    });
+</script>

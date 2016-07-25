@@ -50,11 +50,18 @@ class Comment extends Model {
         $email = $this->db->escape($data['email']);
         $msg = $this->db->escape($data['msg']);
 
+        $reply_to = 0;
+        if(isset($data['reply_to'])){
+            $reply_to = $this->db->escape($data['reply_to']);
+        }
+
+
         $sql = "
           insert into comments 
             set page_id = {$page_id},
-                email = '$email',
-                msg = '$msg'
+                reply_to = {$reply_to},
+                email = '{$email}',
+                msg = '{$msg}'
         ";
 
         if($this->db->query($sql)){

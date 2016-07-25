@@ -23,7 +23,14 @@ class PagesController extends Controller{
         $comments_model = new Comment();
         $comment_id = $comments_model->add($page_id, $_POST);
 
-        Router::redirect('/pagess/view/'.$alias);
+        if($comment_id){
+            echo "Спасибо, комментарий добавлен";
+        } else {
+            echo "Ошибка!!!";
+        }
+
+        exit;
+
     }
 
     public function view(){
