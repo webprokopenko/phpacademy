@@ -7,3 +7,7 @@ define('VIEWS_PATH', ROOT.DS.'views');
 require_once(ROOT.DS.'lib'.DS.'init.php');
 
 App::run($_SERVER['REQUEST_URI']);
+
+$test = App::$db->query('select * from pages');
+echo "<pre>";
+print_r($test);

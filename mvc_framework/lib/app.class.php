@@ -4,6 +4,8 @@ class App{
 
     protected static $router;
 
+    public static $db;
+
     /**
      * @return mixed
      */
@@ -13,6 +15,8 @@ class App{
 
     public static function run($uri){
         self::$router = new Router($uri);
+
+        self::$db = new DB(Config::get('db.host'), Config::get('db.user'), Config::get('db.password'), Config::get('db.db_name'));
 
         Lang::load(self::$router->getLanguage());
 
