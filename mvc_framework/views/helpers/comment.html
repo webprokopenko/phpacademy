@@ -1,0 +1,5 @@
+<div style="padding:10px; margin-top: 20px; border: 1px solid #dedede;">
+    <b style="color: red;"><?=$comment['email']?></b><br>
+    <?=$comment['msg']?><br><br>
+    <a href="javascript:void(0);" onclick="$(this).replaceWith($('#comment_form').clone().append('<input value=<?=$comment['id']?> name=reply_to type=hidden />'));">Ответить</a>
+</div>

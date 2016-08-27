@@ -1,3 +1,44 @@
 <h1><?=$data['page']['title']?></h1>
 
 <?=$data['page']['content']?>
+
+<?php if($data['comments']){ ?>
+
+    <h3>Комментарии (<?=count($data['comments'])?>)</h3><br>
+
+    <?php foreach($data['comments'] as $comment){ ?>
+        <?php include VIEWS_PATH.DS.'helpers'.DS.'comment.html'; ?>
+    <?php } ?>
+
+<?php } ?>
+
+<form class="comment_form" method="post" id="comment_form" action="/pages/addComment/<?=$data['page']['alias']?>">
+    <h3>Добавить комментарий</h3><br>
+    <input type="text" name="email" class="form-control" placeholder="Ваш имейл" /><br>
+    <textarea name="msg" placeholder="Комментарий" class="form-control"></textarea><br>
+    <input type="submit" onclick="sendComment($(this).parent(), event);" value="Добавить" />
+</form>
+
+<script>
+    function sendComment(form, event){
+        event.preventDefault();
+
+        // Переменная, куда отправляется форма
+        var post_url = $(form).attr('action');
+
+        my_form = form;
+
+        console.log(form);
+
+        $.post(post_url, $(form).serialize())
+                .done(function(data) {
+                    console.log(my_form);
+
+                    $(my_form).replaceWith(data);
+                });
+    }
+
+   $(".comment_form").submit(function(event) {
+       sendComment(this, event);
+   });
+</script>
