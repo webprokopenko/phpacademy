@@ -1,0 +1,48 @@
+<style>
+    label {
+        font-weight: normal;
+    }
+</style>
+<h1>Все товары:</h1>
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-4">
+            <form>
+            <?php foreach($data['attr_result'] as $key => $attrs){ ?>
+            <div class="form-group">
+                <b><?=$key?></b><br>
+                <?php foreach($attrs as $attr_val_id => $attr_val){ ?>
+                    <input <?php if(in_array($attr_val_id, $data['selected_filters'])){ ?>checked="checked"<?php } ?> id="attr_<?=$attr_val_id?>" name="filter[]" type="checkbox" value="<?=$attr_val_id?>" />
+                    <label for="attr_<?=$attr_val_id?>"><?=$attr_val?></label><br>
+                <?php } ?>
+            </div>
+            <?php } ?>
+                <input type="submit" value="Фильтровать" />
+                <input type="reset" value="Сбросить" />
+            </form>
+        </div>
+        <div class="col-md-8">
+
+            <?php if(empty($data['products'])){ ?>
+
+                Товаров пока нет.
+
+            <?php } else { ?>
+
+                <?php foreach($data['products'] as $product){ ?>
+                <div style="margin-top:20px;padding-bottom:20px;">
+                    <h4><a href="/products/view/<?=$product['alias']?>"><?=$product['title']?></a></h4>
+                    <p><?=$product['description']?></p>
+                    <p><b>Цена: <?=number_format($product['price'],2)?> грн</b></p>
+                </div>
+                <?php } ?>
+
+            <?php } ?>
+
+        </div>
+    </div>
+</div>
+
+
