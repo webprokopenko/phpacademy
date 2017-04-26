@@ -77,6 +77,9 @@ print str_rand(1);
 echo "<br>";
 /**
  * Управление регистром символов
+ * В контексте этих функций пропуск (whitespace) определяется как один из сле-
+    дующих символов: новая строка, возврат курсора, пробел, горизонтальная и вер-
+    тикальная табуляция, нуль-символ.
  */
 $str = "This is not a palindrome.";
 print ucfirst($str); #Первое слово первая буква к верхнему регистру
@@ -145,4 +148,46 @@ echo "<br>";
 echo mb_substr($str,0,-1,'UTF-8'); #Выделение строки с указание кодировки необходимо для русского языка
 echo "<br>";
 
+/**
+ * Задача: подсчитать количество повторений символов в строке
+ */
+function lookandsay($s)
+{
+    $arr  =array();
+    for ($i = 1, $j = strlen($s); $i<$j; $i++){
+        $m = $s[$i];
+        $n=0;
+        for ($k = 1, $l = strlen($s); $k<$l; $k++)
+        {
+            if ($s[$k] == $m){ #Если символ совпадает
+                $n++; #Увеличить счетчик этого символа
+            }
+        }
+        $arr[$s[$i]] = $n;
+    }
+    return $arr;
 
+}
+$arrr = (lookandsay(strtolower('aabbbcccdd1111'))) ;
+foreach ($arrr as $key=>$item) {
+    echo "<br>";
+    echo $key . "=>".$item;
+    echo "<br>";
+}
+/**
+ * Генерирование записей с полями фиксированной длины
+ * Требуется отформатировать записи данных так,
+ * чтобы каждое поле занимало указанное еоличество символов
+ */
+$books = array( array('Elmer Gantry', 'Sinclair Lewis', 1927),
+                array('The Scarlatti Inheritance','Robert Ludlum', 1971),
+                array('The Parsifal Mosaic','William Styron', 1979) );
+foreach ($books as $book) {
+    $ar[]= pack('A25A15A4',$book[0], $book[1], $book[2]) ."<br>";
+}
+var_dump($ar);
+$p[] = pack("C*",80,72,80);
+var_dump($p);
+
+$binarydata = pack("nvc*", 0x1234, 0x5678, 65, 66);
+var_dump($binarydata);
