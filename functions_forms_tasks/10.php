@@ -11,16 +11,26 @@
 function count_unique_words($str){
     $words = explode(' ',$str);
     $unique = 0;
+    $result_array = array();
 
-    for ($i=0;$i<count($words);$i++){
-        for ($j=0;$j<count($words);$j++){
-            if ($words[$i] == $words[$j] && ($i != $j)){}
-                //echo $words[$i]." = ".$words[$j]."<br>";
-            else
-                echo "Unique :". $words[$i];
+    foreach ($words as $key1 => $word1) {
+        foreach ($words as $key2 => $word2) {
+            if ($word1 == $word2){
+                if (!isset($result_array[$word1]))
+                    $result_array[$word1]=1;
+                else
+                    $result_array[$word1]++;
+
+                unset($words[$key2]);
+            }
         }
-        echo "<br>";
+    }
+
+    foreach ($result_array as $item) {
+        if ($item == 1)
+            $unique++;
     }
     return $unique;
 }
-count_unique_words('test string test');
+$ar2 = count_unique_words('test1 string test test1 test test test string1 task tost');
+print_r($ar2);
