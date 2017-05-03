@@ -10,15 +10,21 @@
  */
 $fruits = array('Apples', 'Bananas', 'Cantaloupes', 'Dates');
 
-$fruits[0] = 'Apples';
+$fruits[1] = 'Apples';
 $fruits[1] = 'Bananas';
 $fruits[2] = 'Cantaloupes';
 $fruits[3] = 'Dates';
 
 $fruits[] = 'Apples';
-$fruits[] = 'Bananas';
+$fruits[16] = 'Bananas';
 $fruits[] = 'Cantaloupes';
 $fruits[] = 'Dates';
+echo count($fruits);
+$keys = array_keys($fruits);
+
+for ($i=0;$i<=(count($fruits)-1);$i++){
+    echo "key: ".$keys[$i]." value: ".$fruits[$i]."<br>";
+}
 /**
  * Ассоциативные массивы
  */
