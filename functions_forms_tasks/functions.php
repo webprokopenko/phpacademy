@@ -429,3 +429,59 @@ function time_parts2($time){
 }
 list(,$minutee,) = time_parts2('12:44:21');
 echo "<b>".$minutee;
+
+/**
+ * Возвращение признака ошибки
+ * Задача: Требуется вернуть из функции признак ошибки, то есть неудачного выполнения
+ */
+function lookup($name){
+    if (empty($name)) return false;
+    /**
+     * Какой то код
+     */
+}
+if (false !== lookup('Jack')){
+    /**
+     * Поиск прошел успешно
+     */
+} else {
+    /**
+     * Сохранить информацию об ошибке
+     */
+}
+/**
+ * Обращение к глобальной переменной внутри функции
+ */
+$food = 'pizza';
+$drink = 'beer';
+function party() {
+    global $food, $drink;
+    unset($food); // Съесть пиццу
+    //$drink = 'New Drink';
+    unset($GLOBALS['drink']); // Выпить пиво
+}
+print "$food: $drink\n";
+party();
+print "$food: $drink\n";
+
+/**
+ * Создание динамических функций
+ * Требуется создать и определить функцию во время выполнения программы
+ */
+$add = function($i,$j){
+    return $i + $j;
+};
+echo "<br>".$add(16,2);
+$imcrement1 = 7;
+$imcrement2 = 10;
+$add2 = function ($i,$j) use ($imcrement1,$imcrement2){
+    return $i + $j + $imcrement1 + $imcrement2;
+};
+echo "<br>".$add2(2,2);
+/**
+ * Второй вариант использования динамичесокй функции
+ */
+
+$imcrement3 = 10;
+$add3 = create_function('$i,$j','return $i+$j+'.$imcrement3.';');
+echo $add3(10,10);
