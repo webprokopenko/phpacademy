@@ -62,7 +62,7 @@ echo "<br>";
  */
 function str_rand($length = 32, $characters = '0123456789abcdefghijklmnopqrstuwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ')
 {
-    if (!is_int($length) or $length < 0)
+    if (!is_int($length) or $length <= 0)
         return false;
     $characters_length = strlen($characters)-1;
     $string = '';

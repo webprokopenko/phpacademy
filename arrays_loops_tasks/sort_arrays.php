@@ -198,15 +198,28 @@ print_r($arr);
 Отличие от usort заключается в том, что сортировка происходит по ключам элементов.
  */
 $complex_arr = array();
-$complex_arr[] = array('c'=>'ivan');
-$complex_arr[] = array('a'=>'igor');
-$complex_arr[] = array('b'=>'maria');
-
+$complex_arr[2] = array('c'=>'ivan');
+$complex_arr[3] = array('a'=>'igor');
+$complex_arr[4] = array('b'=>'maria');
 function arrCamp($a,$b){
-    if (strcasecmp($a,$b) == 0) return 0;
-    if (strcasecmp($a,$b) > 0) return 1;
-     else return -1;
+    if ($a == $b) {
+        return 0;
+    }
+    return ($a > $b) ? -1 : 1;
 }
+echo "<br>";
+print_r($complex_arr);
+
+uksort($complex_arr,'arrCamp');
+echo "<br>";
+print_r($complex_arr);
+
+$complex_arr = array();
+$complex_arr[2] = array(3=>'ivan');
+$complex_arr[3] = array(2=>'igor');
+$complex_arr[4] = array('maria');
+
+
 uksort($complex_arr,'arrCamp');
 echo "<br>";
 print_r($complex_arr);
