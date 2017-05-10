@@ -18,3 +18,9 @@ function array_find_val($needle,$haystack){
     }
 }
 
+$arr = array(1,2,3,4,5);
+$var = array_find_value(3,$arr);
+echo $var;
+$var = 14;
+var_dump($arr);
+echo $var;
