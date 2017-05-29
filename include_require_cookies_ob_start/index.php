@@ -5,10 +5,10 @@
 	$color = $arr[$rand_key];
 ?>
 <h1>Главное меню</h1><br>
-	<a href="/">Главная</a>
-	<a href="/?act=about">О компании</a>
-	<a href="/?act=products">Товары</a>
-	<a href="/?act=contact">Контакты</a>
+	<a href="index.php">Главная</a>
+	<a href="index.php?act=about">О компании</a>
+	<a href="index.php?act=products">Товары</a>
+	<a href="index.php?act=contact">Контакты</a>
 <br>
 
 <?php 
